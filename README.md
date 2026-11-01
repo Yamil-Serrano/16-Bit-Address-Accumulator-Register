@@ -33,6 +33,26 @@ This module has four control pins:
 - **DEC (Decrement)**: Selects whether to add or subtract the incoming data from our address register.
 - **CP (Clock Pulse)**: The clock signal for the internal registers.
 
+## Verification
+
+The module was verified on a breadboard using an Arduino Mega 2560 as a test controller. A dedicated test [`firmware`](./src/tester/src) was written to exercise the accumulator's read and write logic, validating both increment and decrement operations across the entire address space.
+
+The test sequence performs the following steps:
+1. Resets the internal register to `0x0000`.
+2. Increments the MAR by `15` (0x0F) repeatedly until it reaches `0xFFFF`.
+3. Decrements the MAR by `15` (0x0F) repeatedly until it returns to `0x0000`.
+
+Each step is compared against the expected result, and the test suite prints a formatted table with `OK` or `FAIL` for every operation.
+
+**Test Output Sample:**
+```text
+| MAR: 0x0000 | Data: 0x000F | Op: Inc | Expected: 0x000F | Got: 0x000F | OK |
+| MAR: 0x000F | Data: 0x000F | Op: Inc | Expected: 0x001E | Got: 0x001E | OK |
+...
+| MAR: 0x0010 | Data: 0x000F | Op: Dec | Expected: 0x0001 | Got: 0x0001 | OK |
+| MAR: 0x0001 | Data: 0x000F | Op: Dec | Expected: 0x0000 | Got: 0x0000 | OK |
+```
+
 ## License
 
 Licensed under the Solderpad Hardware License v2.1.
