@@ -89,7 +89,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -10109,6 +10108,30 @@
 		(at 91.2 51.8 90)
 		(layer "F.SilkS")
 		(uuid "d5935f81-cb3a-4554-a42f-40b98be2522a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "-->"
+		(at 165.5 126.5 90)
+		(layer "F.SilkS")
+		(uuid "4901b349-314c-4fb4-b8de-ca4213fd57ca")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "-->"
+		(at 93.5 121 270)
+		(layer "F.SilkS")
+		(uuid "e68c2ffd-b331-472e-ba43-3fd0152b6d02")
 		(effects
 			(font
 				(size 1 1)

@@ -75,6 +75,23 @@ void testMAR(uint16_t data, bool dec, uint16_t expected)
     }
 }
 
+void test(int input_value) {
+
+    uint32_t maxSteps = ((1UL << NUM_REG_PINS) - 1) / input_value;
+
+    // increment tests
+    resetMAR();
+    for (int i = 0; i < maxSteps; i++) {
+        testMAR(input_value, 0, getData() + input_value);
+    }
+
+    // decrement tests
+    for (int i = maxSteps; i > 0; i--) {
+        testMAR(input_value, 1, getData() - input_value);
+    }
+
+}
+
 void setup()
 {
     Serial.begin(115200);
@@ -99,19 +116,9 @@ void setup()
     digitalWrite(MARDEC, LOW);
     digitalWrite(Not_Store, LOW);
 
-   uint32_t maxSteps = ((1UL << NUM_REG_PINS) - 1) / 15;
-
-    // increment tests
-    resetMAR();
-    for (int i = 0; i < maxSteps; i++) {
-        testMAR(15, 0, getData() + 15);
+    for (int i = 1; i < 16; i++) {
+        test(i);
     }
-
-    // decrement tests
-    for (int i = maxSteps; i > 0; i--) {
-        testMAR(15, 1, getData() - 15);
-    }
-
 
 }
 
